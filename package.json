@@ -1,17 +1,17 @@
 {
-  "name": "angular-electron",
-  "version": "1.9.0",
-  "description": "Angular 4 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "name": "ailio",
+  "version": "0.0.1",
+  "description": "Desktop Reddit Client",
+  "homepage": "https://github.com/apedley/ailio",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Andrew Pedley",
+    "email": "apedley@gmail.com"
   },
   "keywords": [
-    "angular",
+    "reddit",
     "electron",
-    "typescript",
-    "sass"
+    "desktop",
+    "social"
   ],
   "main": "main.js",
   "private": true,

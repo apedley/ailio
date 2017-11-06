@@ -67,6 +67,7 @@ export class ElectronStorageService {
   }
 
   getMany(keys: string[]): Observable<AllUserStorageResults> {
+    console.dir(ElectronJsonStorage.getDataPath());
     return Observable.create( (observer) => {
       ElectronJsonStorage.getMany(keys, (err, data) => {
         if (err) {
