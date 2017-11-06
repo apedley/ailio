@@ -1,0 +1,10 @@
+@import '../../../../variables';
+
+.brand-icon {
+  padding-right: 1em;
+  color: map-get($theme-colors, 'brightinfo');
+}
+
+.nav-li-link {
+  cursor: pointer;
+}

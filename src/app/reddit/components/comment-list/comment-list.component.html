@@ -1,0 +1,7 @@
+<div *ngIf="comments.length > 0">
+
+<app-comment
+  *ngFor="let commentEl of comments; let i = index"
+  [comment]="commentEl" [index]="i">
+</app-comment>
+</div>

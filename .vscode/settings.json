@@ -1,0 +1,14 @@
+{
+  "search.exclude": {
+    "**/dist": true
+  },
+  "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib",
+
+  "files.exclude": {
+    "**/.git": true,
+    "dist": true,
+    "**/.idea": true,
+    "**/.DS_Store": true,
+    "app-builds": true
+  }
+}

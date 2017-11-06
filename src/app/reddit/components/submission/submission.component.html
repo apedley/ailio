@@ -1,0 +1,52 @@
+<!-- <div class="subreddit-submission">
+  <span>
+    {{ submission.score }}
+  </span>
+  <div>
+    <img [src]="previewImageUrl" class="img-fluid img-thumbnail">
+  </div>
+  <h5>{{ submission.title }}</h5>
+  <div>
+    Comments: {{ submission.num_comments }}
+  </div>
+</div> -->
+
+<div class="media submission-item">
+  <img [src]="previewImageUrl" alt="" class="d-flex mr-3 img-fluid img-thumbnail submission-preview align-self-center">
+  <div class="media-body">
+    <h5 class="submission-title">{{ submission.title }}
+    <span class="submission-domain">
+      ({{ submission.domain }})
+    </span>
+    <span [routerLink]="['/r', submission.subreddit_name_prefixed]" class="submission-subreddit">
+      {{ submission.subreddit_name_prefixed }}
+    </span>
+    </h5>
+    <ul class="submission-info">
+        <li [routerLink]="['/comments', submission.id]" class="submission-comments">
+          {{ submission.num_comments }} Comments
+        <li>
+        <!-- <li class="submission-subreddit" [routerLink]="['/r', submission.subreddit_name_prefixed]">
+          {{ submission.subreddit_name_prefixed }}
+        </li> -->
+        <li class="submission-author" routerLink='/'>
+          /u/{{ submission.author?.name }}
+        </li>
+        <li class="submission-save" routerLink='/'>
+          Save
+        </li>
+        <li class="submission-hide" routerLink='/'>
+          Hide
+        </li>
+        <li class="submission-date">
+          {{ utcDate | date:'short' }}
+        </li>
+
+    </ul>
+    <!-- <div class="submission-actions">
+      <a
+      <a href="#" class="submission-action">Save</a>
+      <a href="#" class="submission-action">Hide</a>
+    </div> -->
+  </div>
+</div>
