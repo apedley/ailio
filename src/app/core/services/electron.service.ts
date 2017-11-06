@@ -41,9 +41,8 @@ export class ElectronService {
 
       if (newUrl.startsWith('http://oauthcallback')) {
         this.reddit.logInFromCode(newUrl.split('code=')[1]);
+
         authWindow.close();
-        console.log('auth');
-        console.dir(event);
       } else {
         console.log('auth fail');
         console.dir(event);

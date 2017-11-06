@@ -1,6 +1,6 @@
 {
   "search.exclude": {
-    "**/dist": true
+    "/dist": true
   },
   "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib",
 

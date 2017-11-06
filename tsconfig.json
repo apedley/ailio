@@ -28,11 +28,10 @@
     ]
   },
   "exclude": [
-    "test.ts",
     "node_modules",
+    "test.ts",
     ".vscode",
     "dist",
-    "**/*.spec.ts",
     "app-builds"
   ]
 }

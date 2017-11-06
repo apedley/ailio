@@ -1,3 +1,4 @@
+import { BsDropdownModule } from 'ngx-bootstrap';
 import { RedditModule } from '../reddit/reddit.module';
 import { HeaderComponent } from './components/header/header.component';
 import { NgModule } from '@angular/core';
@@ -15,7 +16,8 @@ import { ElectronStorageService } from './services/electron-storage.service';
   imports: [
     CommonModule,
     RedditModule,
-    RouterModule
+    RouterModule,
+    BsDropdownModule.forRoot()
   ],
   exports: [
     HomeViewComponent

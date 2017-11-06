@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { ElectronService } from './core/services/electron.service';
+import { ElectronStorageService } from './core/services/electron-storage.service';
+import * as fromAuth from './store/auth/auth.reducer';
+import * as AuthActions from './store/auth/auth.actions';
+import { Store } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-root',
@@ -9,7 +14,7 @@ import { ElectronService } from './core/services/electron.service';
   styles: ['']
 })
 export class AppComponent {
-  constructor(public electronService: ElectronService) {
+  constructor(public electronService: ElectronService, private authStore: Store<fromAuth.State>) {
 
     if (electronService.isElectron()) {
       console.log('Mode electron');
@@ -20,5 +25,8 @@ export class AppComponent {
     } else {
       console.log('Mode web');
     }
+
+    this.authStore.dispatch(new AuthActions.LoadUserFromStorage());
+
   }
 }

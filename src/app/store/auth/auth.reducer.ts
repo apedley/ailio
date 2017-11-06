@@ -4,13 +4,15 @@ import { RedditUser, Subreddit } from 'snoowrap';
 export interface State {
   user: RedditUser,
   loggedIn: boolean,
-  subscriptions: Subreddit[]
+  subscriptions: Subreddit[],
+  refreshToken: string
 }
 
 const initialState = {
   user: null,
   subscriptions: [],
-  loggedIn: false
+  loggedIn: false,
+  refreshToken: ''
 }
 
 
@@ -19,7 +21,8 @@ export function AuthReducer(state = initialState, action: AuthActions.AuthAction
     case (AuthActions.LOGGED_IN):
       return {
         ...state,
-        loggedIn: true
+        loggedIn: true,
+        refreshToken: action.refreshToken
       };
     case (AuthActions.STORE_USER_INFO):
     case (AuthActions.SET_USER_INFO):
@@ -35,8 +38,14 @@ export function AuthReducer(state = initialState, action: AuthActions.AuthAction
       }
     case (AuthActions.LOG_OUT):
       return {
-        ...state,
-        user: null
+        ...initialState
+      }
+    case (AuthActions.SET_USER_FROM_STORAGE):
+      return {
+        user: action.user,
+        subscriptions: action.subreddits,
+        refreshToken: action.refreshToken,
+        loggedIn: true
       }
     default:
       return state;

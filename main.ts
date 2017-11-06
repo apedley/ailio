@@ -38,7 +38,9 @@ function createWindow() {
     x: 0,
     y: 0,
     width: size.width,
-    height: size.height
+    height: size.height,
+    backgroundColor: '#004448',
+    show: false
   });
 
   // and load the index.html of the app.
@@ -49,6 +51,12 @@ function createWindow() {
     win.webContents.openDevTools();
   }
 
+  win.on('ready-to-show', () => {
+    win.show();
+    if (environment.production) {
+      win.focus();
+    }
+  })
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store window

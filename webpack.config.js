@@ -6,10 +6,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
 const ConcatPlugin = require('webpack-concat-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin, DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
 const { GlobCopyWebpackPlugin, BaseHrefWebpackPlugin, InsertConcatAssetsWebpackPlugin } = require('@angular/cli/plugins/webpack');
-const { CommonsChunkPlugin, UglifyJsPlugin } = require('webpack').optimize;
+const { CommonsChunkPlugin } = require('webpack').optimize;
 const { AotPlugin } = require('@ngtools/webpack');
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
@@ -45,7 +46,7 @@ function getPlugins() {
 
 if(scripts.length > 0){
   plugins.push(new ConcatPlugin({
-    "uglify": false,
+    "uglify": true,
     "sourceMap": true,
     "name": "scripts",
     "fileName": "[name].bundle.js",
@@ -174,16 +175,18 @@ if(scripts.length > 0){
       "tsConfigPath": "src/tsconfig.app.json"
     }));
 
-    plugins.push(new UglifyJsPlugin({
-      "mangle": {
-        "screw_ie8": true
-      },
-      "compress": {
-        "screw_ie8": true,
-        "warnings": false
-      },
-      "sourceMap": false
-    }));
+    // plugins.push(new UglifyJsPlugin({
+    //   test: /\.(js|jsx)$/,
+    //   exclude: /node_modules/,
+    //   "mangle": {
+    //     // "screw_ie8": true
+    //   },
+    //   "compress": {
+    //     // "screw_ie8": true,
+    //     "warnings": false
+    //   },
+    //   "sourceMap": true
+    // }));
 
   } else {
     plugins.push(new AotPlugin({
