@@ -7,17 +7,14 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeViewComponent
+  },
+  {
+    path: 'r/:subreddit',
+    component: HomeViewComponent
+  }, {
+    path: 'comments/:postId',
+    component: HomeViewComponent
   }
-  // {
-  //   path: 'home',
-  //   component: HomeComponent
-  // }, {
-  //   path: 'r/:subreddit',
-  //   component: SubredditComponent
-  // }, {
-  //   path: 'comments/:postId',
-  //   component: PostComponent
-  // }
 ];
 
 @NgModule({

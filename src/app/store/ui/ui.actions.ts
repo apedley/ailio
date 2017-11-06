@@ -1,4 +1,14 @@
-// import { Action } from '@ngrx/store';
+import { Action } from '@ngrx/store';
+
+
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+
+export class ToggleSidebar implements Action {
+  readonly type = TOGGLE_SIDEBAR;
+}
+
+export type UiActions = ToggleSidebar | null;
+
 // import { Location } from './ui.reducer';
 // export const APP_JUST_OPENED = 'APP_JUST_OPENED';
 

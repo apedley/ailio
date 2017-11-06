@@ -28,11 +28,15 @@ export class ElectronService {
 
   openAuthWindow() {
     const authUrl = this.reddit.getAuthUrl();
+    const currentWindow = remote.getCurrentWindow();
 
     const authWindow = new remote.BrowserWindow({
-      width: 800,
-      height: 600,
-      show: false
+      show: false,
+      parent: currentWindow,
+      modal: true,
+      webPreferences: {
+        zoomFactor: 0.9
+      }
     });
 
     authWindow.loadURL(authUrl);

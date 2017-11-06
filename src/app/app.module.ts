@@ -38,7 +38,9 @@ import * as fromRootStore from './store/index';
     RedditModule,
     AppRoutingModule,
     StoreRouterConnectingModule,
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument({
+      maxAge: 40
+    })
   ],
   providers: [
     {provide: RouterStateSerializer, useClass: fromRootStore.CustomRouterStateSerializer}

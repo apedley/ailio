@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, Menu, screen } from 'electron';
 import * as path from 'path';
 import { environment } from './src/environments/index';
 
@@ -16,9 +16,17 @@ if (serve) {
 function createWindow() {
 
   const electronScreen = screen;
+  const sss = electronScreen.getPrimaryDisplay();
+
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
-
+  // const windowSize = {100
+  //   x: 0,
+  //   y: 0,
+  //   width: size.width,
+  //   height: size.height
+  // }
+  // console.dir(windowSize);
 // console.dir(BrowserWindow.getDevToolsExtensions());
 // installExtension(REDUX_DEVTOOLS)
 // .then((name) => console.log(`Added Extension:  ${name}`))
@@ -32,15 +40,18 @@ function createWindow() {
 // BrowserWindow.addDevToolsExtension('/Users/andrew/Library/Application Support/Google/Chrome/Default/Extensions/elgalmkoelokbchhkhacckoklkejnhcd/1.14.0_0');
   if (!environment.production) {
     BrowserWindow.addDevToolsExtension('/Users/andrew/Library/Application Support/Google/Chrome/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.15.1_0');
+
   }
+
   // Create the browser window.
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
-    width: size.width,
-    height: size.height,
+    width: 1200,
+    height: 825,
+    center: true,
     backgroundColor: '#004448',
-    show: false
+    show: false,
+    fullscreenable: false,
+    vibrancy: 'dark',
   });
 
   // and load the index.html of the app.
@@ -51,12 +62,29 @@ function createWindow() {
     win.webContents.openDevTools();
   }
 
-  win.on('ready-to-show', () => {
+  if (!environment.production) {
+    win.webContents.on('context-menu', (e, props) => {
+      const { x, y } = props;
+
+      Menu
+        .buildFromTemplate([{
+          label: 'Inspect element',
+          click: () => {
+            win.inspectElement(x, y);
+          }
+        }])
+        .popup(win)
+      });
+  }
+  win.webContents.on('did-finish-load', () => {
+
     win.show();
     if (environment.production) {
       win.focus();
     }
   })
+  // win.on('ready-to-show', () => {
+  // })
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store window

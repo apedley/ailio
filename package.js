@@ -32,7 +32,7 @@ function pack(plat, arch, cb) {
     // there is no darwin ia32 electron
     if (plat === 'darwin' && arch === 'ia32') return;
 
-    let icon = 'src/favicon';
+    let icon = 'src/assets/icon';
 
     if (icon) {
         DEFAULT_OPTS.icon = icon + (() => {
@@ -54,7 +54,7 @@ function pack(plat, arch, cb) {
         all: shouldBuildAll,
         out: `app-builds`
     });
-
-    console.log(opts)
+    console.log('aiseufjasf OPTSSSSSS');
+    console.dir(opts)
     packager(opts, cb);
 }

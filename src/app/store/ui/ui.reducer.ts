@@ -1,46 +1,30 @@
-// import * as UiActions from './ui.actions';
-// import * as PostsActions from '../../../reddit/store/posts/posts.actions'
-// export interface Location {
-//   params: {
-//     [id: string]: string
-//   }
-// }
+import * as UiActions from './ui.actions';
 
-// export interface State {
-//   appJustOpened: boolean;
-//   loading: boolean;
-// }
+export interface State {
+  sidebarVisible: boolean,
+  sidebarContent: string
+}
 
-// const initialState = {
-//   currentLocation: {
-//     route: 'home',
-//     params: {}
-//   },
-//   appJustOpened: true,
-//   loading: false
-// }
+const initialState = {
+  sidebarVisible: true,
+  sidebarContent: 'subscriptions'
+}
 
-// export function UiReducer(state = initialState, action: UiActions.UiActions | PostsActions.PostActions) {
-//   switch (action.type) {
-//     case (UiActions.APP_JUST_OPENED):
-//       return {
-//         ...state,
-//         appJustOpened: false
-//       };
-//     case(PostsActions.FETCH_FRONT_PAGE):
-//     case(PostsActions.FETCH_SUBREDDIT):
-//     case(PostsActions.FETCH_POST):
-//       return {
-//         ...state,
-//         loading: true
-//       };
-//     case(PostsActions.SET_POST):
-//     case(PostsActions.SET_POSTS):
-//       return {
-//         ...state,
-//         loading: false
-//       }
-//     default:
-//       return state;
-//   }
-// }
+export function UiReducer(state = initialState, action: UiActions.UiActions) {
+  switch (action.type) {
+    case (UiActions.TOGGLE_SIDEBAR):
+      return {
+        ...state,
+        sidebarVisible: !state.sidebarVisible
+      }
+    default:
+      return state;
+  }
+}
+
+export const getSidebar = (state: State) => {
+  return {
+    sidebarVisible: state.sidebarVisible,
+    sidebarContent: state.sidebarContent
+  }
+}
